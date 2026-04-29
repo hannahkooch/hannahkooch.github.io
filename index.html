@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hannah Koch - Portfolio. Multimediale Medienproduktion mit Fokus auf Podcast, Video und Social Media.">
+<meta property="og:title" content="Hannah Koch - Medien Portfolio">
+<meta property="og:description" content="Multimediale Medienproduktion mit Fokus auf Podcast und Storytelling.">
+<meta property="og:image" content="images/hannah.jpg">
+<title>Hannah Koch - Medien Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Manrope:wght@300..700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #F4ECE0;
+    --paper: #FAF5EC;
+    --shell: #E8D9C4;
+    --ink: #2A1F1A;
+    --ink-soft: #5C4A3F;
+    --ink-mute: #8B7B6E;
+    --terracotta: #C26244;
+    --terracotta-deep: #8E3F26;
+    --olive: #6E7A4E;
+    --line: rgba(42, 31, 26, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    font-weight: 400;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Subtle paper-grain noise overlay - very light */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0.025 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  ::selection { background: var(--terracotta); color: var(--paper); }
+
+  a { color: inherit; text-decoration: none; }
+
+  .display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background: rgba(244, 236, 224, 0.7);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  nav .logo {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+  }
+  nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+  nav a {
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--terracotta); }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--terracotta);
+    transition: width 0.3s ease;
+  }
+  nav a:hover::after { width: 100%; }
+  @media (max-width: 700px) {
+    nav ul { display: none; }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 0 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-blob-1 {
+    top: 8%;
+    right: -8%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle at 30% 30%, rgba(194, 98, 68, 0.18), transparent 65%);
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    animation: blob-float 22s ease-in-out infinite;
+  }
+  .hero-blob-2 {
+    bottom: -10%;
+    left: -10%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle at 60% 60%, rgba(110, 122, 78, 0.14), transparent 65%);
+    border-radius: 45% 55% 60% 40% / 55% 45% 50% 50%;
+    animation: blob-float 28s ease-in-out infinite reverse;
+  }
+  @keyframes blob-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -30px) scale(1.05); }
+    66% { transform: translate(-15px, 20px) scale(0.97); }
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero { padding: 120px 0 60px; }
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fade-up 0.9s 0.1s ease forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--terracotta);
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 96px);
+    color: var(--ink);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fade-up 0.9s 0.2s ease forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+
+  .hero-tagline {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fade-up 0.9s 0.4s ease forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    opacity: 0;
+    animation: fade-up 0.9s 0.55s ease forwards;
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta span::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--terracotta);
+  }
+
+  .hero-photo {
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fade-in 1.2s 0.3s ease forwards;
+  }
+  .hero-photo-shape {
+    position: absolute;
+    top: -4%;
+    right: -6%;
+    width: 78%;
+    height: 78%;
+    background: var(--terracotta);
+    border-radius: 58% 42% 55% 45% / 48% 52% 48% 52%;
+    z-index: 0;
+    animation: blob-float 18s ease-in-out infinite;
+  }
+  .hero-photo img {
+    position: relative;
+    display: block;
+    width: 86%;
+    height: 86%;
+    margin: 8% 7%;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 30px 60px -24px rgba(142, 63, 38, 0.4);
+    transform: rotate(-2.5deg);
+    transition: transform 0.6s ease, border-radius 0.6s ease;
+    z-index: 1;
+  }
+  .hero-photo:hover img {
+    transform: rotate(1deg);
+    border-radius: 22px;
+  }
+  .hero-photo-tag {
+    position: absolute;
+    bottom: -16px;
+    left: -8px;
+    background: var(--paper);
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 12px 32px -12px rgba(42, 31, 26, 0.2);
+    z-index: 2;
+    transform: rotate(-4deg);
+  }
+  .hero-photo-tag span { color: var(--terracotta); }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ============ SECTION HEADER ============ */
+  section { padding: 100px 0; position: relative; }
+  @media (max-width: 700px) { section { padding: 70px 0; } }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta-deep);
+    margin-bottom: 24px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--terracotta-deep);
+  }
+
+  .section-heading {
+    font-size: clamp(36px, 5vw, 64px);
+    margin-bottom: 56px;
+    max-width: 900px;
+  }
+  .section-heading em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+
+  /* ============ ABOUT ============ */
+  .about {
+    background: var(--paper);
+    position: relative;
+  }
+  .about::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(70% 100% at 50% 0%);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  .about-intro {
+    position: sticky;
+    top: 120px;
+  }
+  @media (max-width: 900px) {
+    .about-intro { position: static; }
+  }
+
+  .about-quote {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-style: italic;
+    font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .about-quote::before {
+    content: '"';
+    display: block;
+    font-size: 80px;
+    line-height: 0.5;
+    color: var(--terracotta);
+    margin-bottom: 24px;
+    font-style: normal;
+  }
+
+  .about-text p {
+    margin-bottom: 22px;
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .about-text p:first-child::first-letter {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 64px;
+    line-height: 0.9;
+    float: left;
+    padding: 6px 12px 0 0;
+    color: var(--terracotta);
+    font-weight: 500;
+  }
+  .about-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline-wrap {
+    position: relative;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .timeline-wrap::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    bottom: 12px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--line) 8%, var(--line) 92%, transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 56px;
+    padding-bottom: 40px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--terracotta);
+    transition: all 0.4s ease;
+  }
+  .timeline-item:hover .timeline-dot {
+    background: var(--terracotta);
+    transform: scale(1.2);
+  }
+  .timeline-item.current .timeline-dot {
+    background: var(--terracotta);
+    box-shadow: 0 0 0 6px rgba(194, 98, 68, 0.15);
+  }
+  .timeline-date {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta-deep);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .timeline-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .timeline-org {
+    font-size: 14px;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .timeline-detail {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* ============ WORK SAMPLES ============ */
+  .work-section { background: var(--paper); }
+  .work-section + .work-section { background: var(--bg); }
+
+  .work-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 56px;
+    padding: 6px;
+    background: var(--shell);
+    border-radius: 100px;
+    width: fit-content;
+  }
+  .work-tab {
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    font-family: inherit;
+  }
+  .work-tab.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .work-tab:hover:not(.active) {
+    color: var(--ink);
+  }
+
+  .work-panel { display: none; }
+  .work-panel.active { display: block; animation: fade-up 0.5s ease; }
+
+  .work-item {
+    margin-bottom: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .work-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+  .work-meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .work-meta .pill {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--shell);
+    color: var(--terracotta-deep);
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    font-size: 11px;
+  }
+
+  .work-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+    font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .work-org {
+    font-size: 15px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+  .work-roles {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .work-roles strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .embed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .spotify-embed iframe {
+    border-radius: 12px;
+    width: 100%;
+    border: none;
+  }
+
+  /* Video embed */
+  .video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--shell);
+  }
+  .video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* External link card (for non-embeddable content) */
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+  .work-section + .work-section .link-card { background: var(--paper); }
+  .link-card:hover {
+    border-color: var(--terracotta);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -16px rgba(42, 31, 26, 0.2);
+  }
+  .link-card::after {
+    content: '↗';
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 18px;
+    color: var(--terracotta);
+    transition: transform 0.3s ease;
+  }
+  .link-card:hover::after {
+    transform: translate(2px, -2px);
+  }
+  .link-card-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--shell);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--terracotta-deep);
+  }
+  .link-card-content {
+    flex: 1;
+    min-width: 0;
+    padding-right: 24px;
+  }
+  .link-card-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .link-card-platform {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Reels grid */
+  .reels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 240px));
+    gap: 16px;
+  }
+  @media (max-width: 700px) {
+    .reels-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .reel-card {
+    aspect-ratio: 9 / 16;
+    background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-deep) 100%);
+    border-radius: 16px;
+    padding: 20px;
+    color: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .reel-card:nth-child(2n) {
+    background: linear-gradient(135deg, var(--olive) 0%, #4d5638 100%);
+  }
+  .reel-card:nth-child(3n) {
+    background: linear-gradient(135deg, #8B6F4E 0%, #5C4628 100%);
+  }
+  .reel-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    transition: transform 0.6s ease;
+  }
+  .reel-card:hover {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+  .reel-card:hover::before {
+    transform: scale(1.2);
+  }
+  .reel-card-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .reel-card-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    font-size: 18px;
+    line-height: 1.25;
+    position: relative;
+    z-index: 1;
+  }
+  .reel-card-platform {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    position: relative;
+    z-index: 1;
+    margin-top: 8px;
+  }
+
+  /* ============ STRENGTHS ============ */
+  .strengths {
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .strengths .section-label { color: #E8A78D; }
+  .strengths .section-label::before { background: #E8A78D; }
+  .strengths .section-heading { color: var(--paper); }
+  .strengths .section-heading em { color: #E8A78D; }
+
+  .strengths::before, .strengths::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .strengths::before {
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(194, 98, 68, 0.25) 0%, transparent 60%);
+  }
+  .strengths::after {
+    bottom: -200px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(110, 122, 78, 0.2) 0%, transparent 60%);
+  }
+
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .strength-card {
+    padding: 40px 32px;
+    border: 1px solid rgba(250, 245, 236, 0.12);
+    border-radius: 20px;
+    background: rgba(250, 245, 236, 0.03);
+    transition: all 0.4s ease;
+  }
+  .strength-card:hover {
+    border-color: rgba(232, 167, 141, 0.4);
+    background: rgba(250, 245, 236, 0.05);
+    transform: translateY(-4px);
+  }
+  .strength-number {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-style: italic;
+    font-size: 64px;
+    line-height: 0.9;
+    color: #E8A78D;
+    margin-bottom: 16px;
+  }
+  .strength-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--paper);
+  }
+  .strength-body {
+    color: rgba(250, 245, 236, 0.7);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .podcast-love {
+    margin-top: 100px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .podcast-love-heading {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-style: italic;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--paper);
+    margin-bottom: 48px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.25;
+  }
+  .podcast-love-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .love-item {
+    padding: 24px;
+    border-left: 2px solid #E8A78D;
+  }
+  .love-item-tag {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #E8A78D;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .love-item-text {
+    color: rgba(250, 245, 236, 0.85);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact {
+    text-align: center;
+    padding: 140px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(194, 98, 68, 0.1) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .contact-content {
+    position: relative;
+    z-index: 1;
+  }
+  .contact-eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta-deep);
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .contact-heading {
+    font-size: clamp(40px, 7vw, 84px);
+    margin-bottom: 40px;
+    line-height: 1.05;
+  }
+  .contact-heading em {
+    font-style: italic;
+    color: var(--terracotta);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .contact-mail {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 40px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 100px;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-mail:hover {
+    background: var(--terracotta-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px -12px rgba(142, 63, 38, 0.4);
+  }
+  .contact-mail-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 40px 0 60px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  footer .footer-name {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* ============ REVEAL ANIMATION ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">Hannah Koch</a>
+  <ul>
+    <li><a href="#about">Über mich</a></li>
+    <li><a href="#werdegang">Werdegang</a></li>
+    <li><a href="#arbeitsproben">Arbeitsproben</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-eyebrow">Portfolio · München</div>
+      <h1 class="display">
+        Hi, ich bin <em>Hannah</em>.
+      </h1>
+      <p class="hero-tagline">
+        Multimediale Medienproduktion mit Fokus auf Podcast und Storytelling. Ich konzipiere, recherchiere, hoste, schneide und sorge dafür, dass am Ende eine Geschichte steht, die jemand wirklich hören will.
+      </p>
+      <div class="hero-meta">
+        <span>Master Multimediale Medienproduktion</span>
+        <span>Podcast · Video · Social Media</span>
+        <span>Aktuell beim BR</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-shape"></div>
+      <img src="images/hannah.jpg" alt="Hannah Koch" />
+      <div class="hero-photo-tag">Schön, dass du <span>hier bist</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="section-label">Über mich</div>
+    <div class="about-grid">
+      <div class="about-intro">
+        <p class="about-quote">
+          Ich war eine dieser Personen, die schon immer in den Medienbereich wollte. Heute weiß ich auch wohin: in die Mischung aus Podcast und Video.
+        </p>
+      </div>
+      <div class="about-text reveal">
+        <p>
+          Ich bin in München aufgewachsen und schon während meinem Bachelor in Konstanz habe ich fast 2,5 Jahre als <strong>Aufnahmeleitung</strong> bei einer Medienproduktion gearbeitet, von Eigenproduktionen über Musikvideos zu Commercials. Weil das Team klein war, ging mein Aufgabenbereich schnell darüber hinaus: ich habe am Storytelling für Werbespots mitgearbeitet, YouTube-Videos konzipiert und Social-Media-Content produziert.
+        </p>
+        <p>
+          In der Bachelorarbeit über Podcast-Journalismus habe ich gemerkt: das ist mein Medium. Im Master <strong>Multimediale Medienproduktion in Ansbach</strong> habe ich eigenständig einen Audio-Bereich beim Kulturportal Bayern aufgebaut und zwei Podcast-Staffeln komplett selbst betreut, von Konzept und Recherche über Skript, Interview und Aufnahme bis zur Postproduktion und plattformgerechten Veröffentlichung.
+        </p>
+        <p>
+          Was mich heute reizt, ist genau diese Mischung: <strong>Podcast und Video, redaktionell und produktionsseitig, von der ersten Recherche bis zum letzten Schnitt</strong>. Im Praktikum bei Wakeword durfte ich diese Bandbreite professionell erleben. Aktuell beim BR an der Masterarbeit über Chancen und Grenzen einer KI-Persona als Podcast-Host und im Radio.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WERDEGANG / TIMELINE ============ -->
+<section id="werdegang">
+  <div class="container">
+    <div class="section-label">Werdegang</div>
+    <h2 class="section-heading display">
+      Vom Abi-Zeugnis zur <em>Audio-Redaktion</em>.
+    </h2>
+
+    <div class="timeline-wrap">
+
+      <div class="timeline-item current reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">04/2026 - 09/2026 · aktuell</div>
+        <div class="timeline-title">Werkstudentin bei Bayern 3</div>
+        <div class="timeline-org">Bayerischer Rundfunk, München</div>
+        <div class="timeline-detail">Mitarbeit bei Audio- und Video-Produktion. Produktion und Post-Produktion von Social Media Beiträgen. Parallel: Masterarbeit über KI-Persona als Podcast-Host.</div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">11/2025 - 01/2026</div>
+        <div class="timeline-title">Praktikum bei Bayern 3 und Bayern 1</div>
+        <div class="timeline-org">Bayerischer Rundfunk, München</div>
+        <div class="timeline-detail">Audio- und Videoproduktion bei Bayern 1 und Bayern 3, aktive Mitarbeit an laufenden Projekten. Social-Media-Betreuung bei Großevents wie BR Mitsingkonzert, Night of the Proms und BR Sternstunden.</div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">07/2025 - 09/2025</div>
+        <div class="timeline-title">Praktikum in der Redaktion bei Wakeword</div>
+        <div class="timeline-org">Wakeword Studios, München</div>
+        <div class="timeline-detail">Tiefen-Recherche und Skripting für die Podcasts „Mensch!" und „Substance". Ideenentwicklung, Konzeption, Dreh und Schnitt von Reels für „Mensch!" und „Ritter, Tod und Teufel". Pitch-Design für einen wissenschaftlichen Klima-Podcast.</div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">09/2024 - heute</div>
+        <div class="timeline-title">Master of Arts - Multimediale Medienproduktion</div>
+        <div class="timeline-org">Hochschule Ansbach</div>
+        <div class="timeline-detail">Aufbau eines Audio-Bereichs und Produktion von zwei Podcast-Staffeln für das Kulturportal Bayern. Mehrere Video-Projekte für YouTube. Regelmäßige Instagram-Formate.</div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">05/2021 - 07/2025</div>
+        <div class="timeline-title">Aufnahmeleitung & Werkstudentin (parallel)</div>
+        <div class="timeline-org">Neumeister Media, Konstanz · Loderwerk, München</div>
+        <div class="timeline-detail">Organisation und Leitung von Video-Produktionen bei Neumeister Media. Workshops zu Kamera, Ton, Licht und Produktion. Bei Loderwerk: Redaktionsplan für multimediale Marketingkampagne, Gestaltung von Präsentationen und Print-Materialien.</div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">10/2019 - 08/2024</div>
+        <div class="timeline-title">Bachelor of Arts - Literatur-, Kunst-, und Medienwissenschaften</div>
+        <div class="timeline-org">Universität Konstanz · Abschluss 1,5</div>
+        <div class="timeline-detail">Bachelorarbeit „Podcast als journalistisches Medium - Potenziale und Grenzen für die Aufbereitung und Darstellung gesellschaftlicher Bewegungen" mit Note 1,3.</div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">07/2017 - 04/2019</div>
+        <div class="timeline-title">Work & Travel</div>
+        <div class="timeline-org">Süd-Ost-Asien</div>
+        <div class="timeline-detail">Erste Berufserfahrungen und eigenständige Reise.</div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">07/2017</div>
+        <div class="timeline-title">Abitur</div>
+        <div class="timeline-org">Edith-Stein Gymnasium</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARBEITSPROBEN ============ -->
+<section id="arbeitsproben" class="work-section">
+  <div class="container">
+    <div class="section-label">Arbeitsproben</div>
+    <h2 class="section-heading display">
+      Eine Auswahl, was bisher <em>entstanden ist</em>.
+    </h2>
+
+    <div class="work-tabs" role="tablist">
+      <button class="work-tab active" data-tab="podcast" role="tab">Podcast</button>
+      <button class="work-tab" data-tab="video" role="tab">Video</button>
+      <button class="work-tab" data-tab="social" role="tab">Social Media</button>
+    </div>
+
+    <!-- ===== PODCAST PANEL ===== -->
+    <div class="work-panel active" id="panel-podcast">
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Storytelling Podcast</span>
+          <span>29.01.2026</span>
+        </div>
+        <h3 class="work-title">Im Schatten der Zeit</h3>
+        <div class="work-org">Hochschule Ansbach · Kulturportal Bayern</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Redaktion · Host · Schnitt · Redaktionsleitung
+        </div>
+        <div class="embed-grid">
+          <div class="spotify-embed">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/0i23WQrJHzGRTvHnFXfKvS?utm_source=generator" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Der bayerische Hiasl: Flucht vor dem Militär (Teil 1)"></iframe>
+          </div>
+          <div class="spotify-embed">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/7MCy4b6JGVnXJt2QbXxbSs?utm_source=generator" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Der bayerische Hiasl: Flucht vor der Obrigkeit (Teil 2)"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Interview Podcast</span>
+          <span>03.02.2026</span>
+        </div>
+        <h3 class="work-title">Wirkungskreise</h3>
+        <div class="work-org">Hochschule Ansbach · Kulturportal Bayern</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Redaktion · Host · Schnitt · Redaktionsleitung
+        </div>
+        <div class="embed-grid">
+          <div class="spotify-embed">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/75JtNZLQZUWKoaWvQDhpZ0?utm_source=generator" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="KulturRaum München (Folge 3)"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Profi-Produktion</span>
+          <span>22.10.2025</span>
+        </div>
+        <h3 class="work-title">Mensch!</h3>
+        <div class="work-org">Wakeword Studios</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Redaktion (Recherche und Skript)
+        </div>
+        <div class="embed-grid">
+          <div class="spotify-embed">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/2EHhr1qk6RcgC44L2lTYEp?utm_source=generator" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Mensch Kai Pflaume! - Nur die Liebe zählt!"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== VIDEO PANEL ===== -->
+    <div class="work-panel" id="panel-video">
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Musikvideo</span>
+          <span>07.04.2023</span>
+        </div>
+        <h3 class="work-title">believer - Metropolis Girl</h3>
+        <div class="work-org">Neumeister Media</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Aufnahmeleitung
+        </div>
+        <div class="embed-grid">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/7lNUGPFbbgs" title="believer - Metropolis Girl (official video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/ylyKfvXqbH0" title="believer - Metropolis Girl (live unplugged)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Bayern 3 · TV-Format</span>
+          <span>13.11.2025</span>
+        </div>
+        <h3 class="work-title">Bayern 3: Das schaffst du nie!</h3>
+        <div class="work-org">Bayerischer Rundfunk</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Unterstützung bei der Postproduktion
+        </div>
+        <div class="video-embed" style="max-width: 720px;">
+          <iframe src="https://www.youtube.com/embed/OCtlu_I9KYM" title="Was kosten diese Autos? Errate den Preis!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Reportage</span>
+          <span>06.02.2025</span>
+        </div>
+        <h3 class="work-title">Grenzenlose Musik: Wenn eine Fürther Schule allen ihre Türe öffnet</h3>
+        <div class="work-org">Hochschule Ansbach · Kulturportal Bayern</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Kamera · Licht
+        </div>
+        <a class="link-card" href="https://kulturportal-bayern.de/grenzenlose-musik-wenn-eine-fuerther-schule-allen-ihre-tuere-oeffnet/" target="_blank" rel="noopener">
+          <div class="link-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </div>
+          <div class="link-card-content">
+            <div class="link-card-title">Fürther Musikspatzen - Reportage</div>
+            <div class="link-card-platform">Kulturportal Bayern · Ansehen</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Künstlerportrait</span>
+          <span>13.05.2025</span>
+        </div>
+        <h3 class="work-title">Michael Jampolski - Künstlerportrait</h3>
+        <div class="work-org">Hochschule Ansbach · FrankenSein</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Produktionsleitung · Kamera
+        </div>
+        <a class="link-card" href="https://frankensein.de/kuenstlerportraet-michael-jampolski/" target="_blank" rel="noopener">
+          <div class="link-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </div>
+          <div class="link-card-content">
+            <div class="link-card-title">Künstlerportrait Michael Jampolski</div>
+            <div class="link-card-platform">FrankenSein · Ansehen</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ===== SOCIAL MEDIA PANEL ===== -->
+    <div class="work-panel" id="panel-social">
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Podcast Promo</span>
+          <span>06.01.2026</span>
+        </div>
+        <h3 class="work-title">Im Schatten der Zeit · Trailer-Kampagne</h3>
+        <div class="work-org">Hochschule Ansbach · Kulturportal Bayern</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Kamera · Schnitt
+        </div>
+        <div class="reels-grid">
+          <a class="reel-card" href="https://www.instagram.com/reel/DTKm-WajAY8/" target="_blank" rel="noopener">
+            <div class="reel-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </div>
+            <div>
+              <div class="reel-card-title">Ankündigung der Staffel</div>
+              <div class="reel-card-platform">Instagram Reel</div>
+            </div>
+          </a>
+          <a class="reel-card" href="https://www.instagram.com/reel/DTcab1NjN5M/" target="_blank" rel="noopener">
+            <div class="reel-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </div>
+            <div>
+              <div class="reel-card-title">Trailer „Im Schatten der Zeit"</div>
+              <div class="reel-card-platform">Instagram Reel</div>
+            </div>
+          </a>
+          <a class="reel-card" href="https://www.instagram.com/reel/DTkKBPsiD0w/" target="_blank" rel="noopener">
+            <div class="reel-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </div>
+            <div>
+              <div class="reel-card-title">Teaser Folge 1: Napoleon Bonaparte</div>
+              <div class="reel-card-platform">Instagram Reel</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">Podcast-Kampagne</span>
+          <span>16.07.2025</span>
+        </div>
+        <h3 class="work-title">Zusätzlicher Content für „Mensch!"</h3>
+        <div class="work-org">Wakeword Studios</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Kamera · Schnitt · Ton · Licht
+        </div>
+        <div class="reels-grid">
+          <a class="reel-card" href="https://www.instagram.com/reel/DL-trBgg-jc/" target="_blank" rel="noopener">
+            <div class="reel-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </div>
+            <div>
+              <div class="reel-card-title">Vorstellung Mira</div>
+              <div class="reel-card-platform">Instagram Reel</div>
+            </div>
+          </a>
+          <a class="reel-card" href="https://www.instagram.com/reel/DMKges-oF58/" target="_blank" rel="noopener">
+            <div class="reel-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </div>
+            <div>
+              <div class="reel-card-title">WORST OF Dieter Bohlen (Teil 5)</div>
+              <div class="reel-card-platform">Instagram Reel</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-meta">
+          <span class="pill">BR Format</span>
+          <span>30.11.2025</span>
+        </div>
+        <h3 class="work-title">Bayern 1: Herzklopfen</h3>
+        <div class="work-org">Bayerischer Rundfunk</div>
+        <div class="work-roles">
+          <strong>Rolle:</strong> Kamera · Schnitt
+        </div>
+        <div class="reels-grid">
+          <a class="reel-card" href="https://www.instagram.com/reel/DRrF4A5jW46/" target="_blank" rel="noopener">
+            <div class="reel-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </div>
+            <div>
+              <div class="reel-card-title">Für immer verliebt</div>
+              <div class="reel-card-platform">Instagram Reel</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ STRENGTHS ============ -->
+<section class="strengths">
+  <div class="container">
+    <div class="section-label">Was mich ausmacht</div>
+    <h2 class="section-heading display">
+      Zwei Stärken, die ich <em>mitbringe</em>.
+    </h2>
+
+    <div class="strengths-grid">
+      <div class="strength-card reveal">
+        <div class="strength-number">01</div>
+        <h3 class="strength-title">Generalistin mit breitem Setup</h3>
+        <p class="strength-body">
+          Ich habe in den letzten Jahren sehr viele verschiedene Projekte gemacht: journalistisch, im Marketing, für unterschiedliche Plattformen, in unterschiedlichen Rollen. Dadurch habe ich gelernt mir Sachen schnell anzueignen und in neue Aufgaben reinzukommen, egal ob das Recherche, Schnitt, Konzept oder Social Media ist.
+        </p>
+      </div>
+      <div class="strength-card reveal">
+        <div class="strength-number">02</div>
+        <h3 class="strength-title">Begeisterungsfähig und mitgestaltend</h3>
+        <p class="strength-body">
+          Ich habe Bock mich weiterzuentwickeln und dazuzulernen, aber genauso Bock dabei zu sein wenn etwas aufgebaut wird. Mitgestalten statt nur abarbeiten. Genau diese Phase finde ich gerade besonders spannend, weil so viel im Entstehen ist.
+        </p>
+      </div>
+    </div>
+
+    <div class="podcast-love">
+      <p class="podcast-love-heading">
+        Warum ich Podcasts liebe? Weil sie das Gegenteil davon sind, wie wir sonst Medien konsumieren.
+      </p>
+      <div class="podcast-love-grid">
+        <div class="love-item">
+          <div class="love-item-tag">On Demand</div>
+          <div class="love-item-text">Sehr bewusster Konsum, ich entscheide wann und was.</div>
+        </div>
+        <div class="love-item">
+          <div class="love-item-tag">Nebenbei</div>
+          <div class="love-item-text">Reisst nicht aus dem Alltag raus, läuft nebenher.</div>
+        </div>
+        <div class="love-item">
+          <div class="love-item-tag">Tiefe</div>
+          <div class="love-item-text">Im Interview lernt man Gäste anders kennen, gesellschaftliche Themen brauchen Raum.</div>
+        </div>
+        <div class="love-item">
+          <div class="love-item-tag">Gegengift</div>
+          <div class="love-item-text">Schöne Alternative zur Schnelllebigkeit von Reels und Shorts.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section id="kontakt" class="contact">
+  <div class="container contact-content">
+    <div class="contact-eyebrow">Kontakt</div>
+    <h2 class="contact-heading display">
+      Lass uns <em>sprechen</em>.
+    </h2>
+    <a class="contact-mail" href="mailto:hannah.kooch@gmail.com">
+      <svg class="contact-mail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+      hannah.kooch@gmail.com
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Hannah Koch</span>
+  <div>Medien Portfolio · München · 2026</div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Tabs
+  document.querySelectorAll('.work-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + target).classList.add('active');
+    });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Smooth scroll for nav
+  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === '#') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
